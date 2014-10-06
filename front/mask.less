@@ -1,0 +1,106 @@
+@import "mask-inc";
+
+.ct {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: @gutter;
+    padding-right: @gutter;
+    position: relative;
+
+    &:after{
+	content: "";
+	clear: both;
+	display:block;
+    }
+}
+.gencl(@tag,@width,@end) when (@end > 0) {
+    .gencl(@tag,@width,(@end - 1));
+
+    .@{tag}-@{end} {
+	width: 100%;
+	margin-left: @gutter;
+	margin-right: @gutter;
+	float: left;
+	display: block;
+	
+	&:first-child {
+	    margin-left: 0px;
+	}
+    	&:last-child {
+	    margin-right: 0px;
+	}
+
+	@media (min-width: @width) {
+	    width: @column * @end + @gutter * 2 * (@end - 1) !important;
+	}
+    }
+}
+
+.gencl(bs,480px,6);
+.gencl(sm,600px,10);
+.gencl(md,960px,16);
+.gencl(lg,1200px,20);
+
+@media (min-width: 480px) {
+    .ct {
+	width: 480px - @gutter * 2;
+    }
+}
+@media (min-width: 600px) {
+    .ct {
+	width: 600px - @gutter * 2;
+    }
+}
+@media (min-width: 960px) {
+    .ct {
+	width: 960px - @gutter * 2;
+    }
+}
+@media (min-width: 1200px) {
+    .ct {
+	width: 1200px - @gutter * 2;
+    }
+}
+
+body {
+    font-size: @fs-md;
+    line-height: 30px;
+    font-family: @ft-def;
+}
+a {
+    color: @black;
+    text-decoration: none;
+}
+.btn(@color) {
+    height: 38px;
+    padding-left: 11px;
+    padding-right: 11px;
+    background-color: @white;
+    font-size: @fs-sm;
+    line-height: @fs-sm;
+    border: @color 1px solid;
+    border-radius: 1px;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 100ms;
+
+    &:hover {
+	background-color: saturate(@color,10%);
+	color: white;
+    }
+    &:before {
+	content: "";
+	width: 12px * sqrt(2);
+	height: 12px * sqrt(2);
+	background-color: @color;
+	position: absolute;
+	top: -12px * sqrt(2) / 2;
+	left: -12px * sqrt(2) / 2;
+	transform: rotate(45deg);
+	display: block;
+    }
+}
+
+.btn-def {.btn(@gray);}
+.btn-pri {.btn(@blue);}
+.btn-suc {.btn(@green);}

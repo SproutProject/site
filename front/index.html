@@ -1,0 +1,48 @@
+<!DOCTYPE>
+<html>
+<head>
+<title>SPROUT</title>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Orbitron">
+<link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.css">
+<link rel="stylesheet" type="text/css" href="mask.css">
+<link rel="stylesheet" type="text/css" href="index.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.8.1/mustache.min.js"></script>
+<script id="template" type="x-tmpl-mustache">
+Hello {{Name}} !
+</script>
+<script type="text/javascript">
+'use strict'
+$(document).ready(function(){
+    var tmpl = $("#template").html();
+
+    Mustache.parse(tmpl);
+
+    $.get("/spt/d/access",{},function(res){
+	//$('body').html(Mustache.render(tmpl,JSON.parse(res)));
+    });
+});
+</script>
+</head>
+<body>
+<div id="nav" class="ct">
+    <div class="sm-2">資訊之芽</div>
+    <div class="sm-6 md-12 lg-16"><ul>
+	<li class="sm-2 plan active"><a href="">計劃</a></li>
+	<li class="sm-2 about"><a href="">關於</a></li>
+	<li class="sm-2 support"><a href="">支援</a></li>
+    </ul></div>
+    <div class="sm-2">登入 | 註冊</div>
+</div>
+<div id="main" class="intro">
+    <div class="ct item">
+	<div class="sm-8 md-9 lg-13">
+	    <h1>Program the World</h1>
+	    <h5>Build & change your world by code</h5>
+	    <button class="btn-suc">深入了解</button>
+	</div>
+    </div>
+</div>
+</body>
+</html>
