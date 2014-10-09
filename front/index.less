@@ -78,7 +78,7 @@ div#nav {
 }
 
 div#main {
-    margin-top: 60px;
+    margin-top: @gutter;
 }
 div#main.intro {
     div.item {
@@ -87,10 +87,35 @@ div#main.intro {
 	padding-bottom: @gutter;
 	background-image: url('item_bk_a.png');
 	background-size: cover;
-	border-radius: 2px;
 
 	& > div {
+	    height: 100%;
+	    font-size: @fs-sm;
+	    position: relative;
 	    float: right;
+	    overflow: hidden;
+	}
+	div.brief,div.extend {
+	    height: 100%;
+	    position: absolute;
+	    transition: top 300ms,opacity 600ms;
+	    transition-timing-function: linear;
+	}
+	div.brief {
+	    top: 0%;
+	    opacity: 1;
+	}
+	div.extend {
+	    top: 150%;
+	    opacity: 0;
+	}
+	&.extend div.brief{
+	    top: -150%;
+	    opacity: 0;
+	}
+	&.extend div.extend{
+	    top: 0%;
+	    opacity: 1;
 	}
     }
 }

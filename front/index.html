@@ -22,6 +22,13 @@ $(document).ready(function(){
     $.get("/spt/d/access",{},function(res){
 	//$('body').html(Mustache.render(tmpl,JSON.parse(res)));
     });
+
+    $('div.item div.brief button').on('click',function(e){
+	$(this).parents('div.item').addClass('extend');
+    });
+    $('div.item div.extend button').on('click',function(e){
+	$(this).parents('div.item').removeClass('extend');
+    });
 });
 </script>
 </head>
@@ -38,9 +45,39 @@ $(document).ready(function(){
 <div id="main" class="intro">
     <div class="ct item">
 	<div class="sm-8 md-9 lg-13">
-	    <h1>Program the World</h1>
-	    <h5>Build & change your world by code</h5>
-	    <button class="btn-suc">深入了解</button>
+	    <div class="brief">
+		<h2>程式語言 (Programming Language)</h2>
+		<h5>學會和電腦溝通，開始一趟馴服機器的旅程</h5>
+		<button class="btn-suc">深入了解</button>
+	    </div>
+	    <div class="extend">
+		<p><strong>想知道軟體工程師是怎麼讓外表單一的硬體執行各種實用的 APP、顯示溫暖人心的多媒體，甚至精彩刺激的遊戲嗎？</strong></p>
+		<p>程式語言是人類和硬體溝通的管道、是邏輯思考和真實世界的橋樑。透過特定格式與邏輯的描述，讓電腦一步步讀懂你的心思，打造出屬於你自己的無限可能！</p>
+		<button class="btn-pri">我知道了</button>
+	    </div>
+	</div>
+    </div>
+    <div class="ct item">
+	<div class="sm-8 md-9 lg-13">
+	    <div class="brief">
+		<h2>解題方法 (Problem Solving)</h2>
+		<h5>挑戰你的腦力極限，進入前所未有的超效率世界</h5>
+		<button class="btn-suc">深入了解</button>
+	    </div>
+	    <div class="extend">
+		<p><strong>遇到各式各樣的問題，總是毫無解決方法的頭緒嗎？<br>一樣是解決問題的方法，你知道好的方法與壞的方法效率可以有幾百萬倍的差異嗎？</strong></p>
+		<p>解題方法將教你分析方法的好壞以及高效率方法的設計方式，讓你走上解決複雜問題的終結者之路！</p>
+		<button class="btn-pri">我知道了</button>
+	    </div>
+	</div>
+    </div>
+    <div class="ct item">
+	<div class="sm-8 md-9 lg-13">
+	    <div class="brief">
+		<h2>資訊之芽 (Sprout Project)</h2>
+		<h5>還在等什麼？立刻加入資訊之芽，成為下一個程式語言與解題方法的玩家</h5>
+		<button class="btn-spe">如何加入</button>
+	    </div>
 	</div>
     </div>
 </div>

@@ -83,6 +83,7 @@ a {
     position: relative;
     overflow: hidden;
     transition: background-color 100ms;
+    transition-timing-function: linear;
 
     &:hover {
 	background-color: saturate(@color,10%);
@@ -104,3 +105,4 @@ a {
 .btn-def {.btn(@gray);}
 .btn-pri {.btn(@blue);}
 .btn-suc {.btn(@green);}
+.btn-spe {.btn(@purple);}
