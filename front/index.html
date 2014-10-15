@@ -5,8 +5,8 @@
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Orbitron">
 <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.css">
-<link rel="stylesheet" type="text/css" href="mask.css">
-<link rel="stylesheet" type="text/css" href="index.css">
+<link rel="stylesheet" type="text/css" href="/spt/mask.css">
+<link rel="stylesheet" type="text/css" href="/spt/index.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.8.1/mustache.min.js"></script>
 <script id="template" type="x-tmpl-mustache">
@@ -23,7 +23,7 @@ $(document).ready(function(){
 	//$('body').html(Mustache.render(tmpl,JSON.parse(res)));
     });
 
-    $('div.item div.brief button').on('click',function(e){
+    $('div.item div.toggle button').on('click',function(e){
 	$(this).parents('div.item').addClass('extend');
     });
     $('div.item div.extend button').on('click',function(e){
@@ -36,16 +36,15 @@ $(document).ready(function(){
 <div id="nav" class="ct">
     <div class="sm-2">資訊之芽</div>
     <div class="sm-6 md-12 lg-16"><ul>
-	<li class="sm-2 plan active"><a href="">計劃</a></li>
-	<li class="sm-2 about"><a href="">關於</a></li>
-	<li class="sm-2 support"><a href="">支援</a></li>
+	<li class="sm-2 plan active"><a href="/spt/">計劃</a></li>
+	<li class="sm-2 about"><a href="/spt/about/">關於</a></li>
     </ul></div>
     <div class="sm-2">登入 | 註冊</div>
 </div>
 <div id="main" class="intro">
     <div class="ct item" style="background-image:url('item_bk_a.png');">
 	<div class="sm-8 md-9 lg-13">
-	    <div class="brief">
+	    <div class="brief toggle">
 		<h2>程式語言 (Programming Language)</h2>
 		<h5>學會和電腦溝通，開始一趟馴服機器的旅程</h5>
 		<button class="btn-suc">深入了解</button>
@@ -59,7 +58,7 @@ $(document).ready(function(){
     </div>
     <div class="ct item" style="background-image:url('item_bk_b.png');">
 	<div class="sm-8 md-9 lg-13">
-	    <div class="brief">
+	    <div class="brief toggle">
 		<h2>解題方法 (Problem Solving)</h2>
 		<h5>挑戰你的腦力極限，進入前所未有的超效率世界</h5>
 		<button class="btn-suc">深入了解</button>
@@ -71,12 +70,12 @@ $(document).ready(function(){
 	    </div>
 	</div>
     </div>
-    <div class="ct item" style="background-image:url('item_bk_c.png'); color: white;">
+    <div class="ct item" style="margin-bottom:60px; background-image:url('item_bk_c.png'); color: white;">
 	<div class="sm-8 md-9 lg-13">
 	    <div class="brief">
 		<h2>資訊之芽 (Sprout Project)</h2>
 		<h5>還在等什麼？立刻加入資訊之芽，成為下一個程式語言與解題方法的玩家</h5>
-		<a class="btn-spe" href="http://codepad.org/WmTgbcBq">如何加入</a>
+		<a href="/spt/about/"><button class="btn-spe">如何加入</button></a>
 	    </div>
 	</div>
     </div>
