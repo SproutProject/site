@@ -17,11 +17,10 @@
     .gencl(@tag,@width,(@end - 1));
 
     .@{tag}-@{end} {
-	width: 100%;
 	margin-left: @gutter;
 	margin-right: @gutter;
 	float: left;
-	display: block;
+	display: none;
 	
 	&:first-child {
 	    margin-left: 0px;
@@ -32,6 +31,7 @@
 
 	@media (min-width: @width) {
 	    width: @column * @end + @gutter * 2 * (@end - 1) !important;
+	    display: block !important;
 	}
     }
 }
@@ -41,22 +41,22 @@
 .gencl(md,960px,16);
 .gencl(lg,1200px,20);
 
-@media (min-width: 480px) {
+@media (min-width: 504px) {
     .ct {
 	width: 480px - @gutter * 2;
     }
 }
-@media (min-width: 600px) {
+@media (min-width: 624px) {
     .ct {
 	width: 600px - @gutter * 2;
     }
 }
-@media (min-width: 960px) {
+@media (min-width: 984px) {
     .ct {
 	width: 960px - @gutter * 2;
     }
 }
-@media (min-width: 1200px) {
+@media (min-width: 1224px) {
     .ct {
 	width: 1200px - @gutter * 2;
     }
@@ -66,10 +66,19 @@ body {
     font-size: @fs-md;
     line-height: 30px;
     font-family: @ft-def;
+    overflow-y: scroll;
 }
 a {
-    color: @black;
+    color: @purple;
     text-decoration: none;
+
+    &:hover {
+	text-decoration: underline;
+    }
+}
+pre {
+    margin: 0px 0px;
+    font-family: @ft-mon;
 }
 .btn(@color) {
     height: 38px;

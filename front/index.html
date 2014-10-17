@@ -5,29 +5,35 @@
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Orbitron">
 <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.css">
+
 <link rel="stylesheet" type="text/css" href="/spt/mask.css">
 <link rel="stylesheet" type="text/css" href="/spt/index.css">
+<link rel="stylesheet" type="text/css" href="/spt/plan.css">
+
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.8.1/mustache.min.js"></script>
-<script id="template" type="x-tmpl-mustache">
-Hello {{Name}} !
-</script>
+
 <script type="text/javascript">
 'use strict'
 $(document).ready(function(){
-    var tmpl = $("#template").html();
+    var j_main = $('#main');
 
-    Mustache.parse(tmpl);
+    var parts = location.href.split('/');
+    var dest = parts[parts.length - 2];
+
+    if(dest == 'spt'){
+	dest = 'plan';
+    }
+
+    $.get('/spt/' + dest + '.html',function(res){
+	Mustache.parse(res);
+	j_main.html(Mustache.render(res));
+    });
+
+    $('#nav li.' + dest).addClass('active');
 
     $.get("/spt/d/access",{},function(res){
 	//$('body').html(Mustache.render(tmpl,JSON.parse(res)));
-    });
-
-    $('div.item div.toggle button').on('click',function(e){
-	$(this).parents('div.item').addClass('extend');
-    });
-    $('div.item div.extend button').on('click',function(e){
-	$(this).parents('div.item').removeClass('extend');
     });
 });
 </script>
@@ -36,53 +42,28 @@ $(document).ready(function(){
 <div id="nav" class="ct">
     <div class="sm-2">資訊之芽</div>
     <div class="sm-6 md-12 lg-16"><ul>
-	<li class="sm-2 plan active"><a href="/spt/">計劃</a></li>
+	<li class="sm-2 plan"><a href="/spt/">計劃</a></li>
 	<li class="sm-2 about"><a href="/spt/about/">關於</a></li>
     </ul></div>
     <div class="sm-2">登入 | 註冊</div>
 </div>
-<div id="main" class="intro">
-    <div class="ct item" style="background-image:url('item_bk_a.png');">
-	<div class="sm-8 md-9 lg-13">
-	    <div class="brief toggle">
-		<h2>程式語言 (Programming Language)</h2>
-		<h5>學會和電腦溝通，開始一趟馴服機器的旅程</h5>
-		<button class="btn-suc">深入了解</button>
-	    </div>
-	    <div class="extend">
-		<p><strong>想知道軟體工程師是怎麼讓外表單一的硬體執行各種實用的 APP、顯示溫暖人心的多媒體，甚至精彩刺激的遊戲嗎？</strong></p>
-		<p>程式語言是人類和硬體溝通的管道、是邏輯思考和真實世界的橋樑。透過特定格式與邏輯的描述，讓電腦一步步讀懂你的心思，打造出屬於你自己的無限可能！</p>
-		<button class="btn-pri">我知道了</button>
-	    </div>
-	</div>
-    </div>
-    <div class="ct item" style="background-image:url('item_bk_b.png');">
-	<div class="sm-8 md-9 lg-13">
-	    <div class="brief toggle">
-		<h2>解題方法 (Problem Solving)</h2>
-		<h5>挑戰你的腦力極限，進入前所未有的超效率世界</h5>
-		<button class="btn-suc">深入了解</button>
-	    </div>
-	    <div class="extend">
-		<p><strong>遇到各式各樣的問題，總是毫無解決方法的頭緒嗎？<br>一樣是解決問題的方法，你知道好的方法與壞的方法效率可以有幾百萬倍的差異嗎？</strong></p>
-		<p>解題方法將教你分析方法的好壞以及高效率方法的設計方式，讓你走上解決複雜問題的終結者之路！</p>
-		<button class="btn-pri">我知道了</button>
-	    </div>
-	</div>
-    </div>
-    <div class="ct item" style="background-image:url('item_bk_c.png'); color: white;">
-	<div class="sm-8 md-9 lg-13">
-	    <div class="brief">
-		<h2>資訊之芽 (Sprout Project)</h2>
-		<h5>還在等什麼？立刻加入資訊之芽，成為下一個程式語言與解題方法的玩家</h5>
-		<a href="/spt/about/"><button class="btn-spe">如何加入</button></a>
-	    </div>
-	</div>
-    </div>
-</div>
+<div id="main"></div>
 <div id="foot" class="ct">
-    <div class="sm-10 md-16 lg-20">
-	<a href="mailto:sprout@csie.ntu.edu.tw">sprout@csie.ntu.edu.tw</a>
+    <div class="sm-6 lg-10">
+	<h3>聯絡我們</h3>
+	<pre>
+Mail	    <a href="mailto:sprout@csie.ntu.edu.tw">sprout@csie.ntu.edu.tw</a>
+Facebook    <a href="https://www.facebook.com/ntucsiesprout">資訊之芽培訓計畫</a>
+計劃負責人   <a href="telto:0988562005">0988562005</a>
+台大資工系   <a href="telto:886-2-33664888">886-2-33664888</a>
+	</pre>
+    </div>
+    <div class="md-6">
+    </div>
+    <div class="sm-4">
+	<h3>平台</h3>
+	<a href="https://www.docker.com/"><img src="https://d3oypxn00j2a10.cloudfront.net/0.11.2/images/pages/brand_guidelines/small_h.png"></img></a>
+	<a href="https://www.linode.com/"><img src="https://www.linode.com/media/images/logos/standard/light/linode-logo_standard_light_medium.png"></img></a>
     </div>
 </div>
 </body>

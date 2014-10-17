@@ -1,0 +1,45 @@
+@import "mask-inc";
+
+div#plan {
+    div.item {
+	height: 216px;
+	margin-top: @gutter;
+	padding-top: @gutter;
+	padding-bottom: @gutter;
+	background-size: cover;
+	box-shadow: 0px 1px 3px -1px fade(@black,10%);
+	border-radius: 2px;
+
+	& > div {
+	    height: 100%;
+	    position: relative;
+	    float: right;
+	    overflow: hidden;
+	}
+	div.brief,div.extend {
+	    height: 100%;
+	    position: absolute;
+	    transition: top 300ms,opacity 600ms;
+	    transition-timing-function: linear;
+	}
+	div.brief {
+	    top: 0%;
+	    opacity: 1;
+	}
+	div.extend {
+	    font-size: @fs-sm;
+	    top: 150%;
+	    opacity: 0;
+	}
+	&.extend div.brief{
+	    top: -150%;
+	    opacity: 0;
+	}
+	&.extend div.extend{
+	    top: 0%;
+	    opacity: 1;
+	}
+    }
+}
+
+
