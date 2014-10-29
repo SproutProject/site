@@ -1,0 +1,35 @@
+<script id="template" type="x-tmpl-mustache">
+<div class="sm-10 md-16 lg-20">
+{{^show}}
+    <h3>Login</h3>
+    <label for="mail">Mail</label><br>
+    <input id="mail" type="textbox"><br>
+    <label for="passwd">Password</label><br>
+    <input id="passwd" type="password"><br><br>
+    <button id="login" class="btn-pri">Login</button>
+{{/show}}
+{{#show}}
+    <h2>Manage QA</h2>
+    <div id="edit">
+	<h3>Add/Edit</h3>
+	<input type="textbox" class="subject" placeholder="Subject"><br><br>
+	<input type="textbox" class="class" placeholder="Class">
+	<input type="textbox" class="order" placeholder="Order"><br><br>
+	<textarea placeholder="HTML"></textarea><br><br>
+	<button class="btn-suc submit">Submit</button>
+	<button class="btn-def cancel">Cancel</button>
+    </div>
+    <div id="list">
+	<h3>List</h3>
+    {{#data}}
+	<div qaid={{Id}}>
+	    <h4>{{Subject}}</h4>
+	    <button class="btn-pri delete">Delete</button>
+	</div>
+    {{/data}}
+    </div>
+{{/show}}
+</div>
+</script>
+<div id="as" class="ct"></div>
+<script type="text/javascript">as.load();</script>

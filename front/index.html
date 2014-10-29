@@ -13,6 +13,8 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.8.1/mustache.min.js"></script>
 
+<script type="text/javascript" src="/spt/as.js"></script>
+<script type="text/javascript" src="/spt/qa.js"></script>
 <script type="text/javascript">
 'use strict'
 $(document).ready(function(){
@@ -26,15 +28,10 @@ $(document).ready(function(){
     }
 
     $.get('/spt/' + dest + '.html',function(res){
-	Mustache.parse(res);
-	j_main.html(Mustache.render(res));
+	j_main.html(res);
     });
 
     $('#nav li.' + dest).addClass('active');
-
-    $.get("/spt/d/access",{},function(res){
-	//$('body').html(Mustache.render(tmpl,JSON.parse(res)));
-    });
 });
 </script>
 </head>
@@ -43,9 +40,9 @@ $(document).ready(function(){
     <div class="sm-2">資訊之芽</div>
     <div class="sm-6 md-12 lg-16"><ul>
 	<li class="sm-2 plan"><a href="/spt/">計劃</a></li>
+	<li class="sm-2 qa"><a href="/spt/qa/">Q&A</a></li>
 	<li class="sm-2 about"><a href="/spt/about/">關於</a></li>
     </ul></div>
-    <div class="sm-2">登入 | 註冊</div>
 </div>
 <div id="main"></div>
 <div id="foot" class="ct">
