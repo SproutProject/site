@@ -7,10 +7,16 @@ var as = new function(){
 	var template = $('#template').html();
 
 	$.post('/spt/d/mg/qa',{},function(res){
+	    var i;
+
 	    if(res.data != null){
-		res.show = true
-	    }
+		res.show = true;
+	    } 
 	    $('#as').html(Mustache.render(template,res));
+
+	    for(i = 0;i < res.data.length;i++){
+		$('[qaid="' + res.data[i].Id + '"]').data('qa',res.data[i]);
+	    }
 
 	    $('#edit > button.submit').on('click',function(e){
 		var subject = $('#edit > input.subject').val();
@@ -20,7 +26,7 @@ var as = new function(){
 		
 		$.post('/spt/d/mg/qa_add',{
 		    'data':JSON.stringify({
-			'Id':null,
+			'Id':$('#edit').attr('qaid'),
 			'Subject':subject,
 			'Clas':clas,
 			'Order':order,
@@ -32,6 +38,15 @@ var as = new function(){
 	    });
 	    $('#edit > button.cancel').on('click',function(e){
 		location.reload();
+	    });
+	    $('#list button.modify').on('click',function(e){
+		var qa = $(this).parent().data('qa');
+		$('#edit').attr('qaid',qa.Id);
+		$('#edit > input.subject').val(qa.Subject);
+		$('#edit > input.clas').val(qa.Clas);
+		$('#edit > input.order').val(qa.Order);
+		$('#edit > textarea').val(qa.Body);
+		location.hash = "edit";
 	    });
 	    $('#list button.delete').on('click',function(e){
 		$.post('/spt/d/mg/qa_add',{

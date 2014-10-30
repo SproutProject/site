@@ -13,7 +13,7 @@
     <div id="edit">
 	<h3>Add/Edit</h3>
 	<input type="textbox" class="subject" placeholder="Subject"><br><br>
-	<input type="textbox" class="class" placeholder="Class">
+	<input type="textbox" class="clas" placeholder="Class">
 	<input type="textbox" class="order" placeholder="Order"><br><br>
 	<textarea placeholder="HTML"></textarea><br><br>
 	<button class="btn-suc submit">Submit</button>
@@ -22,8 +22,9 @@
     <div id="list">
 	<h3>List</h3>
     {{#data}}
-	<div qaid={{Id}}>
-	    <h4>{{Subject}}</h4>
+	<div qaid={{Id}} style="margin-bottom:6px;">
+	    <strong class="md-12">{{Order}} - {{Subject}}</strong>
+	    <button class="btn-suc modify">Modify</button>
 	    <button class="btn-pri delete">Delete</button>
 	</div>
     {{/data}}
