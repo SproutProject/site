@@ -14,8 +14,10 @@ var as = new function(){
 	    } 
 	    $('#as').html(Mustache.render(template,res));
 
-	    for(i = 0;i < res.data.length;i++){
-		$('[qaid="' + res.data[i].Id + '"]').data('qa',res.data[i]);
+	    if(res.data != null){
+		for(i = 0;i < res.data.length;i++){
+		    $('[qaid="' + res.data[i].Id + '"]').data('qa',res.data[i]);
+		}
 	    }
 
 	    $('#edit > button.submit').on('click',function(e){
