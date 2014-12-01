@@ -1,15 +1,13 @@
 @import "mask-inc";
 
+body {
+    background-color: #00FFDA;
+}
+
 div#nav {
-    height: 40px;
-    margin-top: -2px;
-    padding-bottom: 2px;
-    background-color: @white;
-    line-height: 44px;
-    position: relative;
-    box-shadow: 0px 1px 3px -1px fade(@black,10%);
-    border-radius: 2px;
-    overflow: hidden;
+    position: absolute;
+    bottom: 30px;
+    right: 60px;
 
     ul {
 	margin: 0px -@gutter 0px -@gutter;
@@ -18,50 +16,29 @@ div#nav {
 	text-align: center;
 
 	& > li {
-	    margin: 0px 0px;
-	    padding-left: @gutter;
-	    padding-right: @gutter;
-	    float: left;
+	    width: 80px;
+	    height: 80px;
+	    margin: 0px 0px @gutter 0px;
+	    background-color: #FFFFFF;
+	    border: solid 8px rgba(0,0,0,0);
+	    border-radius: 50%;
 	}
 	& > li > a {
 	    width: 100%;
 	    height: 100%;
 	    color: @black;
 	    text-decoration: none;
+	    font-size: @fs-lg;
+	    line-height: 80px;
 	    display: block;
 	}
 
 	.nav-color(@color) {
-	    position: relative;
-	    overflow: hidden;
-	    
-	    &:after {
-		content: "";
-		width: 169.7px;
-		height: 169.7px;
-		background-color: @color;
-		position: absolute;
-		bottom: -(169.7px - 120px) / 2 - 120px + 6px;
-		right: -(169.7px - 120px) / 2 - 120px + 6px;
-		transform: rotate(45deg);
-		display: block;
+	    &:hover,&.active {
+	        border-color: @color;
 	    }
-	    &:before {
-		content: "";
-		width: 169.7px;
-		height: 169.7px;
-		background-color: @color;
-		position: absolute;
-		top: -(169.7px - 120px) / 2 - 120px;
-		left: -(169.7px - 120px) / 2 - 120px;
-		transform: rotate(45deg);
-		display: block;
-		transition: top 10ms,left 10ms;
-		transition-timing-function: linear;
-	    }
-	    &:hover:before,&.active:before {
-		top: -(169.7px - 120px) / 2 - 120px + 12.36px;
-		left: -(169.7px - 120px) / 2 - 120px + 12.36px;
+	    & > a {
+		color: @color;
 	    }
 	}
 	& > li.plan {
@@ -76,9 +53,27 @@ div#nav {
     }
 }
 
-div#main {
-    margin-top: @gutter;
+div#back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    & > img.logo {
+	width: 600px;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	display: block;
+    }
 }
+div#main {
+    position: relative;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
 div#foot {
     margin-top: 40px;
     margin-bottom: 40px;

@@ -1,42 +1,57 @@
 @import "mask-inc";
 
 div#plan {
+    div.intro {
+	margin-top: 30px;
+    }
     div.item {
-	height: 216px;
+	width: 300px;
+	height: 600px;
 	margin-top: @gutter;
+	margin-right: 60px;
 	padding-top: @gutter;
 	padding-bottom: @gutter;
+	padding-left: @gutter;
+	padding-right: @gutter;
 	background-size: cover;
 	box-shadow: 0px 1px 3px -1px fade(@black,10%);
-	border-radius: 2px;
+	position: relative;
+	overflow: hidden;
+	float:left;
 
-	& > div {
-	    height: 100%;
-	    position: relative;
-	    float: right;
-	    overflow: hidden;
-	}
 	div.brief,div.extend {
-	    height: 100%;
+	    width: 300px - @gutter * 2;
 	    position: absolute;
-	    transition: top 300ms,opacity 600ms;
+	    bottom: @gutter;
+	    transition: right 300ms,opacity 600ms;
 	    transition-timing-function: linear;
+	    text-align: right;
+
+	    & > div {
+		margin-top: 30px;
+		margin-bottom: 30px;
+		font-size:@fs-lg;
+	    }
 	}
 	div.brief {
-	    top: 0%;
+	    right: @gutter;
 	    opacity: 1;
 	}
 	div.extend {
-	    font-size: @fs-sm;
-	    top: 150%;
+	    font-size: @fs-md;
+	    right: -150%;
 	    opacity: 0;
+
+	    & > p{
+		text-align: left;
+	    }
 	}
 	&.extend div.brief{
-	    top: -150%;
+	    right: 150%;
 	    opacity: 0;
 	}
 	&.extend div.extend{
-	    top: 0%;
+	    right: @gutter;
 	    opacity: 1;
 	}
     }
