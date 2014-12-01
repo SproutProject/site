@@ -6,7 +6,7 @@ body {
 
 div#nav {
     position: absolute;
-    bottom: 30px;
+    bottom: 60px;
     right: 60px;
 
     ul {
@@ -16,11 +16,11 @@ div#nav {
 	text-align: center;
 
 	& > li {
-	    width: 80px;
-	    height: 80px;
+	    width: 70px;
+	    height: 70px;
 	    margin: 0px 0px @gutter 0px;
-	    background-color: #FFFFFF;
-	    border: solid 8px rgba(0,0,0,0);
+	    background-color: @white;
+	    border: solid 4px rgba(0,0,0,0);
 	    border-radius: 50%;
 	}
 	& > li > a {
@@ -29,7 +29,7 @@ div#nav {
 	    color: @black;
 	    text-decoration: none;
 	    font-size: @fs-lg;
-	    line-height: 80px;
+	    line-height: 70px;
 	    display: block;
 	}
 
@@ -56,7 +56,7 @@ div#nav {
 div#back {
     width: 100%;
     height: 100%;
-    position: absolute;
+    position: fixed;
     top: 0px;
     left: 0px;
 
@@ -67,41 +67,24 @@ div#back {
 	right: 0px;
 	display: block;
     }
+    & > div.foot {
+	position: absolute;
+	color: @white;
+	right: @gutter;
+	bottom: @gutter;
+	font-size: @fs-sm;
+	line-height: @fs-sm + 2;
+
+	h3 {
+	    margin: 0px 0px 3px 0px;
+	}
+	a {
+	    color: @white;
+	}
+    }
 }
 div#main {
     position: relative;
-    margin-left: 200px;
-    margin-right: 200px;
-}
-
-div#foot {
-    margin-top: 40px;
-    margin-bottom: 40px;
-    background-color: @white;
-    position: relative;
-    box-shadow: 0px 1px 3px -1px fade(@black,10%);
-    border-radius: 2px;
-    overflow: hidden;
-
-    & > div {
-	width: 100%;
-	padding-bottom: 30px;
-
-	& img {
-	    width: 100%;
-	    margin-bottom: @gutter;
-	}
-    }
-
-    &:before {
-	content: "";
-	width: 100%;
-	height: 3px;
-	margin-left: -@gutter;
-	padding-left: @gutter;
-	padding-right: @gutter;
-	background-color: @gray;
-	border-bottom: @white 2px dashed;
-	display: block;
-    }
+    margin-left: 240px;
+    margin-right: 240px;
 }

@@ -5,8 +5,8 @@ div#plan {
 	margin-top: 30px;
     }
     div.item {
-	width: 300px;
-	height: 600px;
+	width: 280px;
+	height: 530px;
 	margin-top: @gutter;
 	margin-right: 60px;
 	padding-top: @gutter;
@@ -19,8 +19,13 @@ div#plan {
 	overflow: hidden;
 	float:left;
 
+	h2 {
+	    margin-top: 0px;
+	    margin-bottom: 3px;
+	}
+
 	div.brief,div.extend {
-	    width: 300px - @gutter * 2;
+	    width: 280px - @gutter * 2;
 	    position: absolute;
 	    bottom: @gutter;
 	    transition: right 300ms,opacity 600ms;
