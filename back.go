@@ -90,7 +90,9 @@ func main() {
     http.Handle("/qa",APIHandler{crspl,RoutineQA})
     http.Handle("/login",APIHandler{crspl,RoutineLogin})
 
+    http.Handle("/mg",APIHandler{crspl,RoutineMg})
     http.Handle("/mg/qa",APIHandler{crspl,RoutineMgQA})
     http.Handle("/mg/qa_add",APIHandler{crspl,RoutineMgQA_Add})
+
     http.ListenAndServe("127.0.0.1:3000",nil)
 }

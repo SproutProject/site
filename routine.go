@@ -81,6 +81,17 @@ func RoutineQA (
 
     return qas,nil
 }
+
+func RoutineMg (
+    ctx *Context,
+    res http.ResponseWriter,
+    req *http.Request,
+) (interface{},error) {
+    if ctx.Token.Key == "" {
+	return nil,StatusError{STATUS_INVALID}
+    }
+    return nil,nil
+}
 func RoutineMgQA (
     ctx *Context,
     res http.ResponseWriter,
@@ -168,4 +179,12 @@ func RoutineMgQA_Add (
     }
 
     return nil,nil
+}
+
+type Request struct {
+    Id string
+    Name string
+    Mail string
+    School string
+    Phone string
 }
