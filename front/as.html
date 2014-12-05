@@ -19,7 +19,7 @@
 </div></div>
 </script>
 <script id="qa-templ" type="x-tmpl-mustache">
-<div id="edit">
+<div class="edit">
     <h3>Add/Edit</h3>
     <input type="textbox" class="subject" placeholder="Subject"><br><br>
     <input type="textbox" class="clas" placeholder="Class">
@@ -28,7 +28,7 @@
     <button class="btn-suc submit">Submit</button>
     <button class="btn-def cancel">Cancel</button>
 </div>
-<div id="list">
+<div class="list">
     <h3>List</h3>
 {{#data}}
     <div qaid={{Id}} style="margin-bottom:6px;">
@@ -39,5 +39,16 @@
 {{/data}}
 </div>
 </script>
+<script id="req-templ" type="x-tmpl-mustache">
+<div id="list">
+    <h3>List</h3>
+{{#data}}
+    <div reqid={{Id}} style="margin-bottom:6px;">
+	<strong class="md-10">{{Order}} - {{Subject}}</strong>
+    </div>
+{{/data}}
+</div>
+</script>
+
 <div id="as"></div>
 <script type="text/javascript">as.load();</script>

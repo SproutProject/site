@@ -45,7 +45,7 @@ var as = new function(){
 	    $.post('/spt/d/mg/qa',{},function(res){
 		var i;
 
-		$('#qa > div.cont').html(Mustache.render(t_qa,res));
+		$('#qa div.cont').html(Mustache.render(t_qa,res));
 
 		if(res.data != null){
 		    for(i = 0;i < res.data.length;i++){
@@ -53,15 +53,15 @@ var as = new function(){
 		    }
 		}
 
-		$('#edit > button.submit').on('click',function(e){
-		    var subject = $('#edit > input.subject').val();
-		    var clas = $('#edit > input.clas').val();
-		    var order = parseInt($('#edit > input.order').val());
-		    var body = $('#edit > textarea').val();
+		$('#qa div.edit > button.submit').on('click',function(e){
+		    var subject = $('#qa div.edit > input.subject').val();
+		    var clas = $('#qa div.edit > input.clas').val();
+		    var order = parseInt($('#qa div.edit > input.order').val());
+		    var body = $('#qa div.edit > textarea').val();
 		    
 		    $.post('/spt/d/mg/qa_add',{
 			'data':JSON.stringify({
-			    'Id':$('#edit').attr('qaid'),
+			    'Id':$('#qa div.edit').attr('qaid'),
 			    'Subject':subject,
 			    'Clas':clas,
 			    'Order':order,
@@ -71,19 +71,19 @@ var as = new function(){
 			location.reload();
 		    });
 		});
-		$('#edit > button.cancel').on('click',function(e){
+		$('#qa div.edit > button.cancel').on('click',function(e){
 		    location.reload();
 		});
-		$('#list button.modify').on('click',function(e){
+		$('#qa div.list button.modify').on('click',function(e){
 		    var qa = $(this).parent().data('qa');
-		    $('#edit').attr('qaid',qa.Id);
-		    $('#edit > input.subject').val(qa.Subject);
-		    $('#edit > input.clas').val(qa.Clas);
-		    $('#edit > input.order').val(qa.Order);
-		    $('#edit > textarea').val(qa.Body);
+		    $('#qa div.edit').attr('qaid',qa.Id);
+		    $('#qa div.edit > input.subject').val(qa.Subject);
+		    $('#qa div.edit > input.clas').val(qa.Clas);
+		    $('#qa div.edit > input.order').val(qa.Order);
+		    $('#qa div.edit > textarea').val(qa.Body);
 		    location.hash = "edit";
 		});
-		$('#list button.delete').on('click',function(e){
+		$('#qa div.list button.delete').on('click',function(e){
 		    $.post('/spt/d/mg/qa_add',{
 			'data':JSON.stringify({
 			    'Id':$(this).parent().attr("qaid"),
