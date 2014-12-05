@@ -1,0 +1,31 @@
+@import "mask-inc";
+
+div#req {
+    width: 80%;
+    margin-top: 16px;
+    margin-bottom: 30px;
+
+    div.intro {
+	div.head {
+	    font-size: 96px;
+	    line-height: 80px;
+	    color: @white;
+	}
+	div.body {
+	    padding: 24px 24px;
+	    background-color: @white;
+	    & > div{
+		width: 62%;
+		height: 30px;
+		padding: 6px 6px;
+		color: @white;
+		font-size: @fs-lg;
+		background-color: #F6C555;
+	    }
+	    & > p {
+		padding-left: 30px;
+		font-size: @fs-lg;
+	    }
+	}
+    }
+}
