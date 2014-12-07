@@ -7,6 +7,7 @@ var as = new function(){
 	var t_login = $('#login-templ').html();
 	var t_dash = $('#dash-templ').html();
 	var t_qa = $('#qa-templ').html();
+	var t_poll = $('#poll-templ').html();
 	var j_as = $('#as');
 
 	$.post('/spt/d/mg',{},function(res){
@@ -45,7 +46,6 @@ var as = new function(){
 	    $.post('/spt/d/mg/qa',{},function(res){
 		var i;
 
-		console.log($('div.qa > div.cont').length);
 		$('div.qa > div.cont').html(Mustache.render(t_qa,res));
 
 		if(res.data != null){
@@ -82,7 +82,6 @@ var as = new function(){
 		    $('div.qa div.edit > input.clas').val(qa.Clas);
 		    $('div.qa div.edit > input.order').val(qa.Order);
 		    $('div.qa div.edit > textarea').val(qa.Body);
-		    location.hash = "edit";
 		});
 		$('div.qa div.list button.delete').on('click',function(e){
 		    $.post('/spt/d/mg/qa_add',{
@@ -95,6 +94,56 @@ var as = new function(){
 		    });
 		});
 	    });
+	    $.post('/spt/d/mg/poll',{},function(res){
+		var i;
+
+		console.log(res.data[0])
+		$('div.poll > div.cont').html(Mustache.render(t_poll,res));
+
+		if(res.data != null){
+		    for(i = 0;i < res.data.length;i++){
+			$('[pollid="' + res.data[i].Id + '"]').data('poll',res.data[i]);
+		    }
+		}
+
+		$('div.poll div.edit > button.submit').on('click',function(e){
+		    var order = parseInt($('div.poll div.edit > input.order').val());
+		    var subject = $('div.poll div.edit > textarea.subject').val();
+		    var body = $('div.poll div.edit > textarea.body').val();
+		    
+		    $.post('/spt/d/mg/poll_add',{
+			'data':JSON.stringify({
+			    'Id':$('div.poll div.edit').attr('pollid'),
+			    'Order':order,
+			    'Subject':subject,
+			    'Body':body,
+			})
+		    },function(res){
+			location.reload();
+		    });
+		});
+		$('div.poll div.edit > button.cancel').on('click',function(e){
+		    location.reload();
+		});
+		$('div.poll div.list button.modify').on('click',function(e){
+		    var poll = $(this).parent().data('poll');
+		    $('div.poll div.edit').attr('pollid',poll.Id);
+		    $('div.poll div.edit > input.order').val(poll.Order);
+		    $('div.poll div.edit > textarea.subject').val(poll.Subject);
+		    $('div.poll div.edit > textarea.body').val(poll.Body);
+		});
+		$('div.poll div.list button.delete').on('click',function(e){
+		    $.post('/spt/d/mg/poll_add',{
+			'data':JSON.stringify({
+			    'Id':$(this).parent().attr("pollid"),
+			    'Subject':"",
+			})
+		    },function(res){
+			location.reload();
+		    });
+		});
+	    });
+
 	});
     };
 }

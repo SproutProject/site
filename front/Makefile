@@ -6,3 +6,4 @@ default:
 	lessc qa.less -o qa.css
 	lessc req.less -o req.css
 	lessc as.less -o as.css
+	lessc poll.less -o poll.css

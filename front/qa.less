@@ -8,17 +8,22 @@ div#qa {
     div.item {
 	width: 80%;
 	margin-bottom: 30px;
-	padding: 8px 16px;
+	padding: 8px 16px 8px 40px;
 	background-color: @white;
 	color: #724938;
 	border-radius: 10px;
 	position: relative;
 	box-shadow: 0px 1px 4px -1px fade(@black,30%);
 
-	p.question:before {
+	& > div.order {
+	    position: absolute;
+	    top: 3px;
+	    left: 10px;
+	}
+	& > p.question:before {
 	    content: "Q : ";
 	}
-	p.answer:before {
+	& > p.answer:before {
 	    content: "A : ";
 	}
 

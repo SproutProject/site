@@ -31,6 +31,17 @@ func RoutineLogin (
     return nil,nil
 }
 
+func RoutineMg (
+    ctx *Context,
+    res http.ResponseWriter,
+    req *http.Request,
+) (interface{},error) {
+    if ctx.Token.Key == "" {
+	return nil,StatusError{STATUS_INVALID}
+    }
+    return nil,nil
+}
+
 type QA struct {
     Id string
     Subject string
@@ -48,7 +59,6 @@ func (qas QAList) Swap(i int,j int) {
 func (qas QAList) Less(i int,j int) bool {
     return qas[i].Order < qas[j].Order
 }
-
 func RoutineQA (
     ctx *Context,
     res http.ResponseWriter,
@@ -80,17 +90,6 @@ func RoutineQA (
     sort.Sort(qas)
 
     return qas,nil
-}
-
-func RoutineMg (
-    ctx *Context,
-    res http.ResponseWriter,
-    req *http.Request,
-) (interface{},error) {
-    if ctx.Token.Key == "" {
-	return nil,StatusError{STATUS_INVALID}
-    }
-    return nil,nil
 }
 func RoutineMgQA (
     ctx *Context,
@@ -179,6 +178,44 @@ func RoutineMgQA_Add (
     }
 
     return nil,nil
+}
+
+func RoutinePoll (
+    ctx *Context,
+    res http.ResponseWriter,
+    req *http.Request,
+) (interface{},error) {
+    return PollGetAll(ctx)
+}
+func RoutineMgPoll (
+    ctx *Context,
+    res http.ResponseWriter,
+    req *http.Request,
+) (interface{},error) {
+    if ctx.Token.Key == "" {
+	return nil,StatusError{STATUS_INVALID}
+    }
+
+    return PollGetAll(ctx)
+}
+func RoutineMgPoll_Add (
+    ctx *Context,
+    res http.ResponseWriter,
+    req *http.Request,
+) (interface{},error) {
+    if ctx.Token.Key == "" {
+	return nil,StatusError{STATUS_INVALID}
+    }
+
+    poll := Poll{}
+    if err := json.Unmarshal(
+	[]byte(req.PostFormValue("data")),
+	&poll,
+    ); err != nil {
+	return nil,err
+    }
+
+    return nil,PollAdd(ctx,&poll)
 }
 
 type Request struct {

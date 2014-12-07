@@ -11,30 +11,54 @@
 <script id="dash-templ" type="x-tmpl-mustache">
 <div class="ct"><div class="md-16 qa">
     <a class="expand" href=""><h2><span>[+]</span>Manage QA</h2></a>
-    <div class="cont">a</div>
+    <div class="cont"></div>
+</div></div>
+<div class="ct"><div class="md-16 poll">
+    <a class="expand" href=""><h2><span>[+]</span>Manage Poll</h2></a>
+    <div class="cont"></div>
 </div></div>
 <div class="ct"><div class="md-16 req">
     <a class="expand" href=""><h2><span>[+]</span>Manage Request</h2></a>
-    <div class="cont">a</div>
+    <div class="cont"></div>
 </div></div>
 </script>
 <script id="qa-templ" type="x-tmpl-mustache">
 <div class="edit">
-    <h3>Add/Edit</h3>
-    <input type="textbox" class="subject" placeholder="Subject"><br><br>
-    <input type="textbox" class="clas" placeholder="Class">
-    <input type="textbox" class="order" placeholder="Order"><br><br>
-    <textarea placeholder="HTML"></textarea><br><br>
-    <button class="btn-suc submit">Submit</button>
-    <button class="btn-def cancel">Cancel</button>
+    <h3>add/edit</h3>
+    <input type="textbox" class="subject" placeholder="subject"><br><br>
+    <input type="textbox" class="clas" placeholder="class">
+    <input type="textbox" class="order" placeholder="order"><br><br>
+    <textarea placeholder="html"></textarea><br><br>
+    <button class="btn-suc submit">submit</button>
+    <button class="btn-def cancel">cancel</button>
 </div>
 <div class="list">
-    <h3>List</h3>
+    <h3>list</h3>
 {{#data}}
-    <div qaid={{Id}} style="margin-bottom:6px;">
+    <div qaid={{id}} style="margin-bottom:6px;">
 	<strong class="md-10">{{Order}} - {{Subject}}</strong>
-	<button class="btn-suc modify">Modify</button>
-	<button class="btn-pri delete">Delete</button>
+	<button class="btn-suc modify">modify</button>
+	<button class="btn-pri delete">delete</button>
+    </div>
+{{/data}}
+</div>
+</script>
+<script id="poll-templ" type="x-tmpl-mustache">
+<div class="edit">
+    <h3>add/edit</h3>
+    <input type="textbox" class="order" placeholder="order"><br><br>
+    <textarea class="subject" placeholder="subject"></textarea><br><br>
+    <textarea class="body" placeholder="content"></textarea><br><br>
+    <button class="btn-suc submit">submit</button>
+    <button class="btn-def cancel">cancel</button>
+</div>
+<div class="list">
+    <h3>list</h3>
+{{#data}}
+    <div pollid={{Id}} style="margin-bottom:6px;">
+	<strong class="md-10">{{Order}}</strong>
+	<button class="btn-suc modify">modify</button>
+	<button class="btn-pri delete">delete</button>
     </div>
 {{/data}}
 </div>

@@ -15,6 +15,14 @@ div#nav {
 	list-style-type: none;
 	text-align: center;
 
+	&.lside {
+	    margin-right: @gutter * 2;
+	    float: right;
+	}
+	&.rside {
+	    float: right;
+	}
+
 	& > li {
 	    width: 70px;
 	    height: 70px;
@@ -22,6 +30,7 @@ div#nav {
 	    background-color: @white;
 	    border: solid 4px rgba(0,0,0,0);
 	    border-radius: 50%;
+	    box-shadow: 0px 1px 4px -1px fade(@black,30%);
 	}
 	& > li > a {
 	    width: 100%;
@@ -52,6 +61,12 @@ div#nav {
 	}
 	& > li.req {
 	    .nav-color(@orange);
+	}
+	& > li.rule {
+	    .nav-color(@yello);
+	}
+	& > li.poll {
+	    .nav-color(#00AA90);
 	}
     }
 }

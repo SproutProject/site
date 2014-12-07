@@ -1,0 +1,43 @@
+@import "mask-inc";
+
+div#poll {
+    width: 80%;
+
+    div.item {
+	& > div.subject {
+	    width: 200px;
+	    height: 200px;
+	    margin: @gutter @gutter;
+	    padding: @gutter @gutter;
+	    background-color: @white;
+	    box-shadow: 0px 1px 4px -1px fade(@black,30%);
+	    float: left;
+	    cursor: pointer;
+
+	    & > p {
+		word-break: break-all;
+	    }
+	    &:hover {
+		box-shadow: 0px 1px 6px -1px fade(@black,60%);
+	    }
+	}
+	& > div.body {
+	    width: 100%;
+	    margin: @gutter @gutter;
+	    padding: @gutter @gutter;
+	    background-color: @white;
+	    box-shadow: 0px 1px 4px -1px fade(@black,30%);
+	    float: left;
+	    display: none;
+	    
+	    & > p {
+		word-break: break-all;
+	    }
+	}
+	&.active{
+	    & > div.body {
+		display: block;
+	    }
+	}
+    }
+}

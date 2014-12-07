@@ -88,11 +88,14 @@ func main() {
     }
 
     http.Handle("/qa",APIHandler{crspl,RoutineQA})
+    http.Handle("/poll",APIHandler{crspl,RoutinePoll})
     http.Handle("/login",APIHandler{crspl,RoutineLogin})
 
     http.Handle("/mg",APIHandler{crspl,RoutineMg})
     http.Handle("/mg/qa",APIHandler{crspl,RoutineMgQA})
     http.Handle("/mg/qa_add",APIHandler{crspl,RoutineMgQA_Add})
+    http.Handle("/mg/poll",APIHandler{crspl,RoutineMgPoll})
+    http.Handle("/mg/poll_add",APIHandler{crspl,RoutineMgPoll_Add})
 
     http.ListenAndServe("127.0.0.1:3000",nil)
 }

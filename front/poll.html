@@ -1,0 +1,15 @@
+<script id="template" type="x-tmpl-mustache">
+{{#data}}
+    <div pollid={{Id}} class="item">
+	<div class="subject">
+	    <p>{{&Subject}}</p>
+	</div>
+	<div class="body">
+	    <p>{{&Body}}</p>
+	    <button class="btn-pri close" style="float:right;">關閉</button>
+	</div>
+    </div>
+{{/data}}
+</script>
+<div id="poll"><div id="list"></div></div>
+<script type="text/javascript">poll.load();</script>
