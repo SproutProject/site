@@ -97,7 +97,6 @@ var as = new function(){
 	    $.post('/spt/d/mg/poll',{},function(res){
 		var i;
 
-		console.log(res.data[0])
 		$('div.poll > div.cont').html(Mustache.render(t_poll,res));
 
 		if(res.data != null){
