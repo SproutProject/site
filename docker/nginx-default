@@ -3,7 +3,7 @@ server {
     listen [::]:80 default_server ipv6only=on;
     root /usr/share/nginx/html;
     index index.html;
-    location / {
+    location /spt/ {
 	try_files $uri $uri/ =404;
     }
     location /spt/d/ {
