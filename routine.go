@@ -357,3 +357,38 @@ func RoutineReqData(
     }
     return nil,nil
 }
+
+func RoutineMgReq (
+    ctx *Context,
+    res http.ResponseWriter,
+    req *http.Request,
+) (interface{},error) {
+    if ctx.Token.Key == "" {
+	return nil,StatusError{STATUS_INVALID}
+    }
+    ids,err := redis.Strings(ctx.CRs.Do("SMEMBERS","REQUEST_DONE"))
+    if err != nil || len(ids) == 0 {
+	return []interface{}{},nil
+    }
+
+    keys := redis.Args{}
+    for i,_ := range(ids) {
+	keys = keys.Add("REQUEST@" + ids[i])
+    }
+    datas,err := redis.Values(ctx.CRs.Do("MGET",keys...))
+    if err != nil {
+	return []interface{}{},err
+    }
+
+    requests := []Request{}
+    for i,_ := range(ids) {
+	if datas[i] == nil {
+	    continue
+	}
+	request := Request{}
+	json.Unmarshal(datas[i].([]byte),&request)
+	requests = append(requests,request)
+    }
+
+    return requests,err
+}

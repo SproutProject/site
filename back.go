@@ -101,6 +101,7 @@ func main() {
     http.Handle("/mg/qa_add",APIHandler{crspl,RoutineMgQA_Add})
     http.Handle("/mg/poll",APIHandler{crspl,RoutineMgPoll})
     http.Handle("/mg/poll_add",APIHandler{crspl,RoutineMgPoll_Add})
+    http.Handle("/mg/req",APIHandler{crspl,RoutineMgReq})
 
     http.ListenAndServe("127.0.0.1:3000",nil)
 }

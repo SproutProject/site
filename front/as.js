@@ -8,6 +8,7 @@ var as = new function(){
 	var t_dash = $('#dash-templ').html();
 	var t_qa = $('#qa-templ').html();
 	var t_poll = $('#poll-templ').html();
+	var t_req = $('#req-templ').html();
 	var j_as = $('#as');
 
 	$.post('/spt/d/mg',{},function(res){
@@ -143,6 +144,18 @@ var as = new function(){
 		});
 	    });
 
+	    $.post('/spt/d/mg/req',{},function(res){
+		var i;
+		var reqs = res.data;
+
+		$('div.req > div.cont').html(Mustache.render(t_req));
+
+		for(i = 0;i < reqs.length;i++){
+		    reqs[i].Data = JSON.parse(reqs[i].Data);
+		}
+		$('div.req > div.cont > pre.json').text(
+		    JSON.stringify(res.data,undefined,2));
+	    });
 	});
     };
 }
