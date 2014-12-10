@@ -1,18 +1,18 @@
-var reqlang = new function(){
+var reqform = new function(){
     var that = this;
-    that.load = function(){
-	var j_main = $('#reqlang');
-    };
-};
-var reqalg = new function(){
-    var that = this;
-    that.load = function(){
-	var j_main = $('#reqalg');
+    that.load = function(clas){
+	var j_main;
 	var t_prepro = $('#prepro-templ').html();
 	var prolist = null;
 
+	if(clas == 0){
+	    j_main = $('#reqalg');
+	}else{
+	    j_main = $('#reqlang');
+	}
+
 	$.post('/spt/d/req/getpre',{
-	    'data':JSON.stringify(0)
+	    'data':clas
 	},function(res){
 	    var i,j;
 	    
@@ -83,7 +83,8 @@ var reqalg = new function(){
 		    'data':verify
 		},function(res){
 		    if(res.status == 'SUCCES'){
-			j_btn.siblings('span.msg').hide();
+			j_main.find('div.verify').hide();
+			j_main.find('div.data').show();
 		    }else{
 			alert('驗證碼錯誤');
 			j_btn.show();
@@ -93,6 +94,37 @@ var reqalg = new function(){
 
 		j_btn.hide();
 		j_btn.siblings('span.msg').show();
+	    });
+	    j_main.find('div.data > button.send').on('click',function(e){
+		var i;
+		var j_textarea = j_main.find('div.data > textarea');
+		var j_btn = $(this);
+		var data = [];
+
+		if(clas == 1){
+		    var j_check;
+		    var from = '';
+
+		    j_check = j_main.find('div.data > input[name=from]:checked');
+		    for(i = 0;i < j_check.length;i++){
+			from += $(j_check[i]).val() + ',';
+		    }
+		    from += j_main.find('div.data > input[type=textbox][name=from]').val();
+		    data.push(from);
+		}
+
+		for(i = 0;i < j_textarea.length;i++){
+		    data.push($(j_textarea[i]).val());
+		}
+
+		$.post('/spt/d/req/data',{
+		    'data':JSON.stringify(data)
+		},function(res){
+		    if(res.status == 'SUCCES'){
+			j_main.find('div.data').hide();
+			j_main.find('div.done').show();
+		    }
+		});
 	    });
 	});
     };

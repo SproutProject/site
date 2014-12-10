@@ -1,3 +1,50 @@
-<div id="reqlang">
-
+<script id="prepro-templ" type="x-tmpl-mustache">
+<h2>選擇題</h2>
+{{#.}}
+<div class="prepro-{{index}}">
+    <p>{{index}}. {{&Statement}}</p>
+    {{#Option}}
+	<input type="radio" name={{index}} value={{value}}> {{desc}}<br><br>
+    {{/Option}}
 </div>
+{{/.}}
+<button class="btn-suc">下一步</button>
+</script>
+<div id="reqlang">
+    <div class="prepro"></div>
+    <div class="checkmail">
+	<h2>驗證信箱</h2>
+	<input type="textbox" class="mail" size="30" placeholder="輸入你的信箱"><br><br>
+	<input type="textbox" class="mail-repeat" size="30" placeholder="再輸入一次"><br><br>
+	<button class="btn-suc send">下一步</button>
+	<span class="msg">處理中</span>
+    </div>
+    <div class="verify">
+	<h2>輸入驗證碼</h2>
+	<input type="textbox" class="verify" size="30" placeholder="輸入信箱收到的驗證碼"><br><br>
+	<button class="btn-suc send">下一步</button>
+	<span class="msg">處理中</span>
+    </div>
+    <div class="data">
+	<h2>備審</h2>
+
+	<p>如何得知資訊之芽？</p>
+	<input type="checkbox" name="from" value="網路"> 網路<br>
+	<input type="checkbox" name="from" value="海報"> 海報<br>
+	<input type="checkbox" name="from" value="親友"> 親友<br>
+	<input type="checkbox" name="from" value="社團"> 社團<br>
+	<input type="textbox" name="from" placeholder="其他"><br><br>
+
+	<p>有沒有其他推薦的宣傳方式呢？ </p>
+	<textarea></textarea>
+
+	<p>我們在語法班有保障性別比 1:1，希望可以把資訊領域推廣給更多女性，讓這個領域更精彩多元。您覺得這個設計好嗎？您自己是否有被此設計激勵？</p>
+	<textarea></textarea>
+	<button class="btn-suc send">完成報名</button>
+    </div>
+    <div class="done">
+	<h2>報名已完成</h2>
+	<a href="/spt/"><button class="btn-pri">回首頁</button></a>
+    </div>
+</div>
+<script type="text/javascript">reqform.load(1);</script>

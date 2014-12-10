@@ -1,8 +1,8 @@
 package main
 
 import (
-    "strconv"
     "net/http"
+    weakrand "math/rand"
     "crypto/rand"
     "encoding/hex"
     "encoding/json"
@@ -52,6 +52,28 @@ var AlgPrePro = []ReqPrePro{
 	    "8-12 hrs",
 	    "12-16 hrs",
 	    "16-20 hrs",
+	},
+	2,
+    },
+    {
+`下列關於資訊之芽證書頒發的規定，何者為真？`,
+	[]string{
+	    "只要從頭到尾都沒有缺席就至少可以拿到結業證書",
+	    "阿文就讀資訊之芽語法班，以正式學員的身份結束兩階段的課程並且成績達到結業的門檻，他從頭到尾應會拿到 2 張證書",
+	    "阿文就讀資訊之芽語法班，非常上進努力，每次作業都有在時間以前全數完成並且拿到滿分，雖然在兩次認證考時都不幸狀況不佳獲得 0 分，還是有機會獲得優秀結業證書",
+	    "阿文就讀資訊之芽算法班，非常上進努力，每次作業都有在時間以前全數完成並且拿到滿分，雖然在兩次認證考時都不幸狀況不佳獲得 0 分，還是有機會獲得優秀結業證書",
+	    "阿文的雙胞胎弟弟阿又也參加了資訊之芽，雖然阿又不同於阿文，喜歡打混摸魚作業一次也沒繳，但只要每次都有到場還是可以繼續第二階段的課程",
+	},
+	2,
+    },
+    {
+`時光來到 2016 年，阿金、阿文、阿哲、阿英、阿義都宣稱自己參加過 2015 的資訊之芽，根據他們的發言，請判斷誰才是真正參加過資訊之芽的人？`,
+	[]string{
+	    "阿金：資訊之芽就是個資訊競賽補習班，專門教人怎麼在資訊競賽中嶄露頭角",
+	    "阿文：我在資訊之芽待了一個階段，讓頂尖教授上了八堂資訊專業課程獲益良多",
+	    "阿哲：我參加資訊之芽到一半原本為了參選公職想要中途退出，卻發現只有在每階段結束時才有機會無痛領回保證金，只好把退出的計畫延後到第一階段結束",
+	    "阿英：資訊之芽這種東西就是先報名再說，反正覺得無聊就中途退出不去上課也不會有任何損失",
+	    "阿義：成績很糟糕也沒有關係，只要和老師混好關係成績曲線到最後就會轉彎",
 	},
 	2,
     },
@@ -146,15 +168,23 @@ func ReqDel(ctx *Context,id string) error {
     )
     return err
 }
-func ReqGenPrePro(clas int) ([]ReqPrePro,error) {
-    return AlgPrePro,nil
-}
-func ReqHashPrePro(selec []int) string {
-    ans := "xfzl3(E)qEU,WO,AUWE09,uOPSUAS80A98D0_"
-    for _,option := range selec {
-	ans += "_" + strconv.Itoa(option)
+func ReqDone(ctx *Context,id string) error {
+    rnd,err := hex.DecodeString(id)
+    if err != nil {
+	return err
     }
     md := sha3.New512()
-    md.Write([]byte(ans))
-    return hex.EncodeToString(md.Sum(nil))
+    md.Write([]byte(rnd))
+    _,err = ctx.CRs.Do(
+	"SADD",
+	"REQUEST_DONE",hex.EncodeToString(md.Sum(nil)),
+    )
+    return err
+}
+func ReqGenPrePro(clas int) ([]ReqPrePro,error) {
+    for i := 0; i  < len(AlgPrePro); i += 1 {
+	j := (weakrand.Int() % (len(AlgPrePro) - i)) + i
+	AlgPrePro[i],AlgPrePro[j] = AlgPrePro[j],AlgPrePro[i]
+    }
+    return AlgPrePro,nil
 }

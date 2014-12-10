@@ -225,7 +225,11 @@ func RoutineReqGetPre(
     res http.ResponseWriter,
     req *http.Request,
 ) (interface{},error) {
-    request,prepro,_ := ReqCreate(ctx,0)
+    clas := 1
+    if req.PostFormValue("data") == "0" {
+	clas = 0
+    }
+    request,prepro,_ := ReqCreate(ctx,clas)
 
     http.SetCookie(res,&http.Cookie{
 	Name: "req",
@@ -329,5 +333,27 @@ func RoutineReqVerify(
 
     request.Step = 3
     ReqStore(ctx,&request)
+    return nil,nil
+}
+func RoutineReqData(
+    ctx *Context,
+    res http.ResponseWriter,
+    req *http.Request,
+) (interface{},error) {
+    request,err := ReqLoad(ctx,req)
+    if err != nil {
+	return nil,StatusError{STATUS_INVALID}
+    }
+    if request.Step != 3 {
+	return nil,StatusError{STATUS_INVALID}
+    }
+
+    request.Data = req.PostFormValue("data")
+
+    request.Step = 4
+    ReqStore(ctx,&request)
+    if ReqDone(ctx,request.Id) != nil {
+	return nil,StatusError{STATUS_INVALID}
+    }
     return nil,nil
 }

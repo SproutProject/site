@@ -4,7 +4,7 @@
 <div class="prepro-{{index}}">
     <p>{{index}}. {{&Statement}}</p>
     {{#Option}}
-	<input type="radio" name={{index}} value={{value}}> {{desc}}<br>
+	<input type="radio" name={{index}} value={{value}}> {{desc}}<br><br>
     {{/Option}}
 </div>
 {{/.}}
@@ -27,6 +27,29 @@
     </div>
     <div class="data">
 	<h2>備審</h2>
+
+	<p>1. 您覺得參加資訊之芽算法班會學到什麼呢？</p>
+	<textarea></textarea>
+
+	<p>2. 您是在哪裡學習程式語法基礎的？</p>
+	<textarea></textarea>
+
+	<p>3. 請問您之前是否接觸過演算法相關知識、或是參加過相關的競賽？如果有，請簡單說明一下</p>
+	<textarea></textarea>
+
+	<p>4. 如果在課程理解或者回家作業遇到困難，您偏好選擇自己想辦法解決（甚至可能無法解決），還是尋求其他人（如同學）的幫助呢？</p>
+	<textarea></textarea>
+
+	<p>5. 面對課業或是以往所參加的其他競賽時，在已經知道正確方法的情況下(如做作業時或是研究考古題等無時間壓力的時間)，你仍然會偏好嘗試其他解法嗎？為什麼？</p>
+	<textarea></textarea>
+
+	<p>6. 請問您是否曾遇過一些題目，雖然照著某種方法能計算出正確答案，你卻仍然對其中的運算過程感到疑惑或無法被該解法說服呢？(例如，不知道為何這樣做一定能得到正確的答案) 如果有類似的經驗，那麼遇到這樣的處境，您偏好採取怎樣的作為呢？</p>
+	<textarea></textarea>
+	<button class="btn-suc send">完成報名</button>
+    </div>
+    <div class="done">
+	<h2>報名已完成</h2>
+	<a href="/spt/"><button class="btn-pri">回首頁</button></a>
     </div>
 </div>
-<script type="text/javascript">reqalg.load();</script>
+<script type="text/javascript">reqform.load(0);</script>

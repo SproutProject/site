@@ -43,7 +43,7 @@ div#req {
 	}
     }
 }
-div#reqalg {
+div#reqlang,div#reqalg {
     width: 80%;
     padding: @gutter * 2 @gutter * 2;
     background-color: @white;
@@ -51,7 +51,14 @@ div#reqalg {
     div.prepro > div {
 	margin-bottom: @gutter * 2;
     }
-    div.checkmail,div.verify,div.data {
+    div.checkmail,div.verify,div.data,div.done {
 	display: none;
+    }
+    div.data {
+	textarea {
+	    width: 100%;
+	    margin-bottom: @gutter * 4;
+	    display: block;
+	}
     }
 }
