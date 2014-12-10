@@ -90,6 +90,11 @@ func main() {
     http.Handle("/qa",APIHandler{crspl,RoutineQA})
     http.Handle("/poll",APIHandler{crspl,RoutinePoll})
     http.Handle("/login",APIHandler{crspl,RoutineLogin})
+    http.Handle("/req/getpre",APIHandler{crspl,RoutineReqGetPre})
+    http.Handle("/req/checkpre",APIHandler{crspl,RoutineReqCheckPre})
+    http.Handle("/req/checkmail",APIHandler{crspl,RoutineReqCheckMail})
+    http.Handle("/req/verify",APIHandler{crspl,RoutineReqVerify})
+    //http.Handle("/req/form",APIHandler{crspl,RoutineReqForm})
 
     http.Handle("/mg",APIHandler{crspl,RoutineMg})
     http.Handle("/mg/qa",APIHandler{crspl,RoutineMgQA})

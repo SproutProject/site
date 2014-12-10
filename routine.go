@@ -2,6 +2,8 @@ package main
 
 import (
     "sort"
+    "strconv"
+    "io/ioutil"
     "net/http"
     "encoding/json"
     "code.google.com/p/go-uuid/uuid"
@@ -218,10 +220,114 @@ func RoutineMgPoll_Add (
     return nil,PollAdd(ctx,&poll)
 }
 
-type Request struct {
-    Id string
-    Name string
-    Mail string
-    School string
-    Phone string
+func RoutineReqGetPre(
+    ctx *Context,
+    res http.ResponseWriter,
+    req *http.Request,
+) (interface{},error) {
+    request,prepro,_ := ReqCreate(ctx,0)
+
+    http.SetCookie(res,&http.Cookie{
+	Name: "req",
+	Value: request.Id,
+	Path: "/spt",
+	MaxAge: 3600000,
+	HttpOnly: true,
+    })
+    return prepro,nil
+}
+func RoutineReqCheckPre(
+    ctx *Context,
+    res http.ResponseWriter,
+    req *http.Request,
+) (interface{},error) {
+    request,err := ReqLoad(ctx,req)
+    if err != nil {
+	return nil,StatusError{STATUS_INVALID}
+    }
+    ReqDel(ctx,request.Id)
+    if request.Step != 0 {
+	return nil,StatusError{STATUS_INVALID}
+    }
+
+    answer := []int{}
+    if err := json.Unmarshal(
+	[]byte(req.PostFormValue("data")),
+	&answer,
+    ); err != nil {
+	return nil,err
+    }
+    if len(answer) != len(request.Answer) {
+	return nil,StatusError{STATUS_INVALID}
+    }
+    for i,x := range request.Answer {
+	if answer[i] != x {
+	    return nil,StatusError{STATUS_INVALID}
+	}
+    }
+
+    request.Step = 1
+    ReqStore(ctx,&request)
+    return nil,nil
+}
+func RoutineReqCheckMail(
+    ctx *Context,
+    res http.ResponseWriter,
+    req *http.Request,
+) (interface{},error) {
+    request,err := ReqLoad(ctx,req)
+    if err != nil {
+	return nil,StatusError{STATUS_INVALID}
+    }
+    if request.Step != 1 {
+	return nil,StatusError{STATUS_INVALID}
+    }
+
+    mail := req.PostFormValue("data")
+    if request.Clas == 0 {
+	resp,err := http.Get("http://reg.cms.sprout.csie.org/checker?" + mail)
+	if err != nil {
+	    return nil,StatusError{STATUS_INVALID}
+	}
+	defer resp.Body.Close()
+	data,err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+	    return nil,StatusError{STATUS_INVALID}
+	}
+	score,err := strconv.ParseInt(string(data),10,32)
+	if err != nil {
+	    return nil,StatusError{STATUS_INVALID}
+	}
+	if score != -1 {
+	    return nil,StatusError{STATUS_INVALID}
+	}
+    }
+
+    MailVerify(mail,request.Verify)
+
+    request.Step = 2
+    ReqStore(ctx,&request)
+    return nil,nil
+}
+func RoutineReqVerify(
+    ctx *Context,
+    res http.ResponseWriter,
+    req *http.Request,
+) (interface{},error) {
+    request,err := ReqLoad(ctx,req)
+    if err != nil {
+	return nil,StatusError{STATUS_INVALID}
+    }
+    if request.Step != 2 {
+	return nil,StatusError{STATUS_INVALID}
+    }
+
+    code := req.PostFormValue("data")
+    if request.Verify != code {
+	return nil,StatusError{STATUS_INVALID}
+    }
+
+    request.Step = 3
+    ReqStore(ctx,&request)
+    return nil,nil
 }

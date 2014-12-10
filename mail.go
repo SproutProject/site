@@ -7,8 +7,8 @@ import (
     "bytes"
 )
 
-func MailReq() {
-    templ := template.Must(template.New("ReqMail").Parse("From: {{.From}}\r\nTo: {{.To}}\r\nSubject: {{.Subject}}\r\nMIME-version: 1.0\r\nContent-Type: text/html; charset=\"UTF-8\"\r\n\r\n{{.Message}}"))
+func MailVerify(target string,code string) error {
+    templ := template.Must(template.New("Verify").Parse("From: {{.From}}\r\nTo: {{.To}}\r\nSubject: {{.Subject}}\r\nMIME-version: 1.0\r\nContent-Type: text/html; charset=\"UTF-8\"\r\n\r\n{{.Message}}"))
     param := struct {
 	From string
 	To string
@@ -16,9 +16,12 @@ func MailReq() {
 	Message string
     }{
 	"sprout@csie.ntu.edu.tw",
-	"xxxx@gmail.com",
+	target,
 	"Hello Request",
-	"<html><body><h3>This is Request</h3></body></html>",
+	fmt.Sprintf(
+	    "<html><body><h3>你的驗證碼是: %s</h3></body></html>",
+	    code,
+	),
     }
     buf := new(bytes.Buffer)
     templ.Execute(buf,&param)
@@ -31,8 +34,9 @@ func MailReq() {
 	    Mail_Passwd,
 	    "smtp.csie.ntu.edu.tw"),
 	"sprout@csie.ntu.edu.tw",
-	[]string{"xxxx@gmail.com"},
+	[]string{target},
 	buf.Bytes(),
     )
-    fmt.Println(err)
+
+    return err
 }

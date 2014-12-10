@@ -41,7 +41,7 @@ func AccessGetToken(ctx *Context,serial string) (AccessToken,error) {
 	"ACCESSTOKEN@" + hex.EncodeToString(md.Sum(nil)),
     ))
     if err := json.Unmarshal(data,&token); err != nil {
-	return token,nil
+	return token,err
     }
 
     return token,nil

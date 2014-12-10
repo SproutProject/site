@@ -29,4 +29,29 @@ div#req {
 	    }
 	}
     }
+
+    div.req {
+	padding: @gutter * 2 @gutter * 2;
+	background-color: @white;
+	text-align: center;
+
+	button {
+	    width: 180px;
+	    height: 120px;
+	    margin-left: @gutter * 2;
+	    font-size: @fs-xg;
+	}
+    }
+}
+div#reqalg {
+    width: 80%;
+    padding: @gutter * 2 @gutter * 2;
+    background-color: @white;
+
+    div.prepro > div {
+	margin-bottom: @gutter * 2;
+    }
+    div.checkmail,div.verify,div.data {
+	display: none;
+    }
 }
