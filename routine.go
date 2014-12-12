@@ -1,6 +1,7 @@
 package main
 
 import (
+    "fmt"
     "sort"
     "strconv"
     "io/ioutil"
@@ -220,13 +221,55 @@ func RoutineMgPoll_Add (
     return nil,PollAdd(ctx,&poll)
 }
 
+
 func RoutineReqGetPre(
     ctx *Context,
     res http.ResponseWriter,
     req *http.Request,
 ) (interface{},error) {
+    type Form struct {
+	Clas int
+	Recaptcha string
+    }
+    type RecaptchaResp struct {
+	Success bool `json:"success"`
+    }
+
+    form := Form{}
+    if err := json.Unmarshal(
+	[]byte(req.PostFormValue("data")),
+	&form,
+    ); err != nil {
+	return nil,StatusError{STATUS_INVALID}
+    }
+
+    url := fmt.Sprintf(
+	"https://www.google.com/recaptcha/api/siteverify?secret=%s&response=%s",
+	Recaptcha_Secret,
+	form.Recaptcha,
+    )
+    resp,err := http.Get(url)
+    if err != nil {
+	return nil,StatusError{STATUS_INVALID}
+    }
+    defer resp.Body.Close()
+    data,err := ioutil.ReadAll(resp.Body)
+    if err != nil {
+	return nil,StatusError{STATUS_INVALID}
+    }
+    recaptcha_resp := RecaptchaResp{}
+    if err := json.Unmarshal(
+	data,
+	&recaptcha_resp,
+    ); err != nil {
+	return nil,StatusError{STATUS_INVALID}
+    }
+    if recaptcha_resp.Success == false {
+	return nil,StatusError{STATUS_INVALID}
+    }
+
     clas := 1
-    if req.PostFormValue("data") == "0" {
+    if form.Clas == 0 {
 	clas = 0
     }
     request,prepro,_ := ReqCreate(ctx,clas)
@@ -259,7 +302,7 @@ func RoutineReqCheckPre(
 	[]byte(req.PostFormValue("data")),
 	&answer,
     ); err != nil {
-	return nil,err
+	return nil,StatusError{STATUS_INVALID}
     }
     if len(answer) != len(request.Answer) {
 	return nil,StatusError{STATUS_INVALID}
