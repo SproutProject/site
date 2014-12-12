@@ -351,6 +351,7 @@ func RoutineReqCheckMail(
     }
 
     MailVerify(mail,request.Verify)
+    request.Mail = mail
 
     request.Step = 2
     ReqStore(ctx,&request)
