@@ -1,10 +1,11 @@
 <script id="prepro-templ" type="x-tmpl-mustache">
 <h2>選擇題</h2>
+<p>歡迎報名資訊之芽培訓計畫，為了確定大家都做好來上課的準備，在報名之前我們為大家準備了這份關於規則認知的小測驗，共有 6 題，全對才能進到下一階段。<br>我們希望這份測驗由報名參加的學員本人完成，請同學們一定要仔細了解課程後再決定要不要報名這個充滿挑戰的課程喔！</p>
 {{#.}}
 <div class="prepro-{{index}}">
     <p>{{index}}. {{&Statement}}</p>
     {{#Option}}
-	<input type="radio" name={{index}} value={{value}}> {{desc}}<br><br>
+	<input type="radio" name={{index}} value={{value}}> {{&desc}}<br><br>
     {{/Option}}
 </div>
 {{/.}}
