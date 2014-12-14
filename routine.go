@@ -399,6 +399,7 @@ func RoutineReqData(
     if ReqDone(ctx,request.Id) != nil {
 	return nil,StatusError{STATUS_INVALID}
     }
+    MailDone(request.Mail)
     return nil,nil
 }
 
