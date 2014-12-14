@@ -91,7 +91,7 @@ var reqform = new function(){
 			j_main.find('div.checkmail').hide();
 			j_main.find('div.verify').show();
 		    }else{
-			alert('信箱尚未符合申請資格');
+			alert('信箱尚未符合申請資格(分數未達門檻)');
 			j_btn.show();
 			j_btn.siblings('span.msg').hide();
 		    }
