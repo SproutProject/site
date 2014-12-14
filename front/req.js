@@ -127,22 +127,19 @@ var reqform = new function(){
 	    var j_textarea = j_main.find('div.data > textarea');
 	    var j_btn = $(this);
 	    var data = [];
+	    var j_check;
+	    var from = '';
 
 	    for(i = 0;i < j_basic.length;i++){
 		data.push($(j_basic[i]).val());
 	    }
 
-	    if(clas == 1){
-		var j_check;
-		var from = '';
-
-		j_check = j_main.find('div.data > input[name=from]:checked');
-		for(i = 0;i < j_check.length;i++){
-		    from += $(j_check[i]).val() + ',';
-		}
-		from += j_main.find('div.data > input[type=textbox][name=from]').val();
-		data.push(from);
+	    j_check = j_main.find('div.data > div.ad > input[name=from]:checked');
+	    for(i = 0;i < j_check.length;i++){
+		from += $(j_check[i]).val() + ',';
 	    }
+	    from += j_main.find('div.data > div.ad > input[type=textbox][name=from]').val();
+	    data.push(from);
 
 	    for(i = 0;i < j_textarea.length;i++){
 		data.push($(j_textarea[i]).val());
