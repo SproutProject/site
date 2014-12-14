@@ -32,20 +32,94 @@
 	<span class="msg">處理中</span>
     </div>
     <div class="data">
-	<h2>備審</h2>
+	<div class="basic">
+	    <h2>基本資料</h2>
+	    姓名<br>
+	    <input type="textbox" class="name" size="15"><br><br>
+	    性別<br>
+	    <select class="gender">
+		<option value="male">男性</option>
+		<option value="female">女性</option>
+	    </select><br><br>
+	    現正就讀學歷<br>
+	    (備註：若沒有適合您的選項，請聯絡我們讓我們知道我們遺漏的情形)<br>
+	    <select class="educate">
+		<option value="高職">高職</option>
+		<option value="高中">高中</option>
+		<option value="國中">國中</option>
+		<option value="大學">大學</option>
+		<option value="五專">五專</option>
+	    </select><br><br>
+	    年級 (請填數字)<br>
+	    <input type="textbox" class="grade" size="15"><br><br>
+	    就讀學校<br>
+	    <input type="textbox" class="school" size="15"><br><br>
+	    報名區域<br>
+	    <select class="area">
+		<option value="北區">北區</option>
+	    </select><br><br>
 
+	    <h2>性向調查</h2>
+	    <p>目前對哪些學科領域有興趣呢？</p>
+	    <textarea></textarea>
+	    <p>（不分科目）實作和理論，您覺得自己比較喜歡哪一方面呢？為什麼？</p>
+	    <textarea></textarea>
+	    <p>家長與校方是否支持您投入資訊領域（如練習寫程式、參加資訊之芽或者其他相關活動），而您自己是否喜歡資訊領域？</p>
+	    <textarea></textarea>
+
+	    <h2>時間分配</h2>
+	    <p>目前一週大約花費多少時間於 (1) 學校課業; (2) 校外學科補習; (3) 除此之外的其他活動(才藝、社團等經常性的行程)？請分別略為估計各項目所需的時間。</p><br>
+
+	    (1) 學校課業 (不含上學時間)<br>
+	    <select>
+		<option value="0~5小時">0~5小時</option>
+		<option value="5~10小時">5~10小時</option>
+		<option value="10~15小時">10~15小時</option>
+		<option value="15~20小時">15~20小時</option>
+		<option value="20~25小時">20~25小時</option>
+		<option value="25小時以上">25小時以上</option>
+	    </select><br><br>
+	    (2) 校外學科補習<br>
+	    <select>
+		<option value="0~5小時">0~5小時</option>
+		<option value="5~10小時">5~10小時</option>
+		<option value="10~15小時">10~15小時</option>
+		<option value="15~20小時">15~20小時</option>
+		<option value="20~25小時">20~25小時</option>
+		<option value="25小時以上">25小時以上</option>
+	    </select><br><br>
+	    (3) 除此之外的其他活動(才藝、社團等經常性的行程)<br>
+	    <select>
+		<option value="0~5小時">0~5小時</option>
+		<option value="5~10小時">5~10小時</option>
+		<option value="10~15小時">10~15小時</option>
+		<option value="15~20小時">15~20小時</option>
+		<option value="20~25小時">20~25小時</option>
+		<option value="25小時以上">25小時以上</option>
+	    </select><br><br>
+	    到目前（看到本題）為止，您估計您最多願意在此一活動（資訊之芽）中花費多少的時間呢？(每週可花多少時間(HR)？)<br>
+	    <select>
+		<option value="0~5小時">0~5小時</option>
+		<option value="5~10小時">5~10小時</option>
+		<option value="10~15小時">10~15小時</option>
+		<option value="15~20小時">15~20小時</option>
+		<option value="20~25小時">20~25小時</option>
+		<option value="25小時以上">25小時以上</option>
+	    </select><br><br>
+	</div>
+
+	<h2>備審</h2>
 	<p>如何得知資訊之芽？</p>
 	<input type="checkbox" name="from" value="網路"> 網路<br>
 	<input type="checkbox" name="from" value="海報"> 海報<br>
 	<input type="checkbox" name="from" value="親友"> 親友<br>
 	<input type="checkbox" name="from" value="社團"> 社團<br>
 	<input type="textbox" name="from" placeholder="其他"><br><br>
-
 	<p>有沒有其他推薦的宣傳方式呢？ </p>
 	<textarea></textarea>
-
 	<p>我們在語法班有保障性別比 1:1，希望可以把資訊領域推廣給更多女性，讓這個領域更精彩多元。您覺得這個設計好嗎？您自己是否有被此設計激勵？</p>
 	<textarea></textarea>
+
 	<button class="btn-suc send">完成報名</button>
     </div>
     <div class="done">

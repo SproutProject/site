@@ -32,25 +32,102 @@
 	<span class="msg">處理中</span>
     </div>
     <div class="data">
-	<h2>備審</h2>
+	<div class="basic">
+	    <h2>基本資料</h2>
+	    姓名<br>
+	    <input type="textbox" class="name" size="15"><br><br>
+	    性別<br>
+	    <select class="gender">
+		<option value="male">男性</option>
+		<option value="female">女性</option>
+	    </select><br><br>
+	    現正就讀學歷<br>
+	    (備註：若沒有適合您的選項，請聯絡我們讓我們知道我們遺漏的情形)<br>
+	    <select class="educate">
+		<option value="高職">高職</option>
+		<option value="高中">高中</option>
+		<option value="國中">國中</option>
+		<option value="大學">大學</option>
+		<option value="五專">五專</option>
+	    </select><br><br>
+	    年級 (請填數字)<br>
+	    <input type="textbox" class="grade" size="15"><br><br>
+	    就讀學校<br>
+	    <input type="textbox" class="school" size="15"><br><br>
+	    報名區域<br>
+	    <select class="area">
+		<option value="北區">北區</option>
+		<option value="竹區">竹區</option>
+	    </select><br><br>
+	    若所選區域沒被錄取，是否願意改到別區上課？<br>
+	    <select class="change">
+		<option value="yes">是</option>
+		<option value="no">否</option>
+	    </select><br><br>
+	    
+	    <h2>性向調查</h2>
+	    <p>目前對哪些學科領域有興趣呢？</p>
+	    <textarea></textarea>
+	    <p>（不分科目）實作和理論，您覺得自己比較喜歡哪一方面呢？為什麼？</p>
+	    <textarea></textarea>
+	    <p>家長與校方是否支持您投入資訊領域（如練習寫程式、參加資訊之芽或者其他相關活動），而您自己是否喜歡資訊領域？</p>
+	    <textarea></textarea>
+	    
+	    <h2>時間分配</h2>
+	    <p>目前一週大約花費多少時間於 (1) 學校課業; (2) 校外學科補習; (3) 除此之外的其他活動(才藝、社團等經常性的行程)？請分別略為估計各項目所需的時間。</p>
 
+	    (1) 學校課業 (不含上學時間)<br>
+	    <select>
+		<option value="0~5小時">0~5小時</option>
+		<option value="5~10小時">5~10小時</option>
+		<option value="10~15小時">10~15小時</option>
+		<option value="15~20小時">15~20小時</option>
+		<option value="20~25小時">20~25小時</option>
+		<option value="25小時以上">25小時以上</option>
+	    </select><br><br>
+	    (2) 校外學科補習<br>
+	    <select>
+		<option value="0~5小時">0~5小時</option>
+		<option value="5~10小時">5~10小時</option>
+		<option value="10~15小時">10~15小時</option>
+		<option value="15~20小時">15~20小時</option>
+		<option value="20~25小時">20~25小時</option>
+		<option value="25小時以上">25小時以上</option>
+	    </select><br><br>
+	    (3) 除此之外的其他活動(才藝、社團等經常性的行程)<br>
+	    <select>
+		<option value="0~5小時">0~5小時</option>
+		<option value="5~10小時">5~10小時</option>
+		<option value="10~15小時">10~15小時</option>
+		<option value="15~20小時">15~20小時</option>
+		<option value="20~25小時">20~25小時</option>
+		<option value="25小時以上">25小時以上</option>
+	    </select><br><br>
+	    到目前（看到本題）為止，您估計您最多願意在此一活動（資訊之芽）中花費多少的時間呢？(每週可花多少時間(HR)？)<br>
+	    <select>
+		<option value="0~5小時">0~5小時</option>
+		<option value="5~10小時">5~10小時</option>
+		<option value="10~15小時">10~15小時</option>
+		<option value="15~20小時">15~20小時</option>
+		<option value="20~25小時">20~25小時</option>
+		<option value="25小時以上">25小時以上</option>
+	    </select><br><br>
+	</div>
+
+	<h2>備審</h2>
 	<p>1. 您覺得參加資訊之芽算法班會學到什麼呢？</p>
 	<textarea></textarea>
-
 	<p>2. 您是在哪裡學習程式語法基礎的？</p>
 	<textarea></textarea>
-
 	<p>3. 請問您之前是否接觸過演算法相關知識、或是參加過相關的競賽？如果有，請簡單說明一下</p>
 	<textarea></textarea>
-
 	<p>4. 如果在課程理解或者回家作業遇到困難，您偏好選擇自己想辦法解決（甚至可能無法解決），還是尋求其他人（如同學）的幫助呢？</p>
 	<textarea></textarea>
-
 	<p>5. 面對課業或是以往所參加的其他競賽時，在已經知道正確方法的情況下(如做作業時或是研究考古題等無時間壓力的時間)，你仍然會偏好嘗試其他解法嗎？為什麼？</p>
 	<textarea></textarea>
-
 	<p>6. 請問您是否曾遇過一些題目，雖然照著某種方法能計算出正確答案，你卻仍然對其中的運算過程感到疑惑或無法被該解法說服呢？(例如，不知道為何這樣做一定能得到正確的答案) 如果有類似的經驗，那麼遇到這樣的處境，您偏好採取怎樣的作為呢？</p>
 	<textarea></textarea>
+
 	<button class="btn-suc send">完成報名</button>
     </div>
     <div class="done">

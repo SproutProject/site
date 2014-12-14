@@ -7,3 +7,4 @@ default:
 	lessc req.less -o req.css
 	lessc as.less -o as.css
 	lessc poll.less -o poll.css
+	lessc rule.less -o rule.css

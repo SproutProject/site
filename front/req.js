@@ -123,9 +123,14 @@ var reqform = new function(){
 	});
 	j_main.find('div.data > button.send').on('click',function(e){
 	    var i;
+	    var j_basic = j_main.find('div.data > div.basic > input,div.data > div.basic > select,div.data > div.basic > textarea');
 	    var j_textarea = j_main.find('div.data > textarea');
 	    var j_btn = $(this);
 	    var data = [];
+
+	    for(i = 0;i < j_basic.length;i++){
+		data.push($(j_basic[i]).val());
+	    }
 
 	    if(clas == 1){
 		var j_check;
