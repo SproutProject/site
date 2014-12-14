@@ -19,7 +19,7 @@ func MailVerify(target string,code string) error {
 	target,
 	"資訊之芽驗證信",
 	fmt.Sprintf(
-	    "<html><body>親愛的資訊之芽報名者：<p>歡迎報名 2015 資訊之芽，您的驗證碼是: %s</p><p>如果您報名的是算法班，除了填寫報名表外，別忘了到 http://reg.cms.sprout.csie.org/ <br>以此一信箱註冊並獲得至少 250 分，才算是完成報名程序喔！</p></body></html>",
+	    "<html><body>親愛的資訊之芽報名者：<p>歡迎報名 2015 資訊之芽，您的驗證碼是: %s</p></body></html>",
 	    code,
 	),
     }
