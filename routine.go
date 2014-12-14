@@ -341,7 +341,7 @@ func RoutineReqCheckMail(
 	if err != nil {
 	    return nil,StatusError{STATUS_INVALID}
 	}
-	score,err := strconv.ParseInt(string(data),10,32)
+	score,err := strconv.ParseFloat(string(data),32)
 	if err != nil {
 	    return nil,StatusError{STATUS_INVALID}
 	}
