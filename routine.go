@@ -345,7 +345,7 @@ func RoutineReqCheckMail(
 	if err != nil {
 	    return nil,StatusError{STATUS_INVALID}
 	}
-	if score != -1 {
+	if score != 250 {
 	    return nil,StatusError{STATUS_INVALID}
 	}
     }
