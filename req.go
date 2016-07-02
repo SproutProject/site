@@ -201,6 +201,10 @@ func ReqDone(ctx *Context,id string) error {
     md := sha3.New512()
     md.Write([]byte(rnd))
     _,err = ctx.CRs.Do(
+        "PERSIST",
+	"REQUEST@" + hex.EncodeToString(md.Sum(nil)),
+    )
+    _,err = ctx.CRs.Do(
 	"SADD",
 	"REQUEST_DONE",hex.EncodeToString(md.Sum(nil)),
     )
